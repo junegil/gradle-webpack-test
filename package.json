@@ -1,0 +1,16 @@
+{
+  "name": "gradle-webpack-test",
+  "version": "0.1.0",
+  "description": "Gradle + Webpack test.",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-util": "latest",
+    "webpack": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remy-g/gradle-webpack-test.git"
+  },
+  "author": "Remy Gil",
+  "license": "ISC"
+}

@@ -1,15 +1,18 @@
 buildscript {
   repositories {
     mavenCentral()
+    jcenter()
   }
   dependencies {
-    classpath('org.springframework.boot:spring-boot-gradle-plugin:1.+')
+    classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE'
+    classpath 'com.moowork.gradle:gradle-node-plugin:0.+'
   }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'com.moowork.node'
 
 repositories {
   mavenCentral()
@@ -17,6 +20,19 @@ repositories {
 
 dependencies {
   compile('org.springframework.boot:spring-boot-starter-web')
+}
+
+task gulp_build(type: NodeTask) {
+  script = file('node_modules/gulp/bin/gulp.js')
+  args = ['build']
+}
+
+gulp_build.dependsOn npmInstall
+build.dependsOn gulp_build
+
+node {
+  version = '0.12.7'
+  download = true
 }
 
 task wrapper(type: Wrapper) {
