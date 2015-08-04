@@ -22,12 +22,13 @@ dependencies {
   compile('org.springframework.boot:spring-boot-starter-web')
 }
 
-task gulp_build(type: NodeTask) {
+task gulp_build(type: NodeTask, dependsOn: npmInstall) {
+  description 'Runs Gulp task \'build\'.'
+
   script = file('node_modules/gulp/bin/gulp.js')
   args = ['build']
 }
 
-gulp_build.dependsOn npmInstall
 build.dependsOn gulp_build
 
 node {
